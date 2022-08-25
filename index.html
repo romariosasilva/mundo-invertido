@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title>Document</title>
+	<title>Mundo Invertido | Semana Front-end</title>
 
+	<link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
-	<header>
-		<audio id="music" autoplay>
-			<source src="assets/musics/normal-world.mpeg" />
-		</audio>
+<body class="light-theme">
+	<header aria-label="Cabeçalho da página">
 		<div class="header-content">
 			<img class="invert-element" src="assets/images/banner/logo.svg" alt="Imagem Principal Mundo Invertido. Semana Front-end DIO." />
 			<p class="invert-element" role="text">
@@ -27,27 +25,28 @@
 	</header>
 
 	<main>
+		<div class="world-characters" id="bottom-characters"></div>
 		<section class="container" id="section-inverted-world">
 			<div class="section-texts">
-				<h1>O Mundo Invertido</h1>
+				<h2>O Mundo Invertido</h2>
 				<p role="text">
 					O Mundo Invertido parece uma cópia do nosso mundo, mas com criaturas horrendas,
 					tempestades assustadoras, muita escuridão e entidades malignas. Um reino
 					controlado por Vecna, que tem planos de trazer tudo isso ao nosso mundo.
 				</p>
-				<img class="invert-element" src="assets/images/content/inverted-world.png" alt="Imagem Ilustrativa do Mundo Invertido" />
 			</div>
+			<img class="invert-element" src="assets/images/content/inverted-world.png" alt="Imagem Ilustrativa do Mundo Invertido" />
 		</section>
 
 		<section class="container" id="section-stranger-things-trailer">
 			<div class="video-frame" aria-hidden="true">
-				<!-- width="460" height="215" -->
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/yTX0HxTq9wo" title="YouTube video player"
+				<!-- width="560" height="315" -->
+				<iframe width="460" height="215" src="https://www.youtube.com/embed/yTX0HxTq9wo" title="YouTube video player"
 						frameborder="0" allowfullscreen
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
 				</iframe>
 			</div>
-			<div class="section-exists">
+			<div class="section-texts">
 				<h2>Stranger Things Vol. 4</h2>
 				<p>
 					Mais experientes, os heróis de Stranger Things também precisam enfrentrar
@@ -108,5 +107,29 @@
 		<img src="assets/images/footer/logo.svg" alt="Logotipo DIO" />
 	</footer>
 
+	<audio id="music" src="assets/musics/normal-world.mpeg" autoplay aria-details="Áudio do site"></audio>
+
+	<script type="module" src="assets/js/main.js"></script>
+	<script>
+		window.addEventListener('click', function() {
+			const audio = document.getElementById('music');
+			audio.play();
+			audio.volume = 0.2;
+		});
+
+		function swithTheme() {
+			document.body.classList.toggle('dark-theme');
+			document.body.classList.toggle('light-theme');
+
+			const theme = document.body.classList[0];
+			const music = theme === 'light-theme' ? 'normal-world.mpeg' : 'inverted-world.mpeg';
+
+			const audio = document.getElementById('music');
+			audio.src = `assets/musics/${music}`;
+			audio.play();
+			audio.volume = 0.2;
+		}
+
+	</script>
 </body>
 </html>
